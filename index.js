@@ -1,22 +1,24 @@
 const inquire = require("inquirer")
 const { describe } = require("yargs")
-
+const fs  = require('fs')
 inquire.prompt([
-
     {
         type: "input",
-        name: "mail",
-        message:"what is your email",
-        validate: function (input) 
-        {
-         if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(input)
-          {
-            return (true)
-          }
-            alert("You have entered an invalid email address!")
-            return (false)
-        }
-    }
+        name: "manageremail",
+        message: "Enter your manager's email: ",
+        // tough one to validate emailaddress
+         validate: input=>{
+           var e = /\S+@\S+\.\S+/
+           if (e.test(input)===true){
+             return true
+           }
+           return "please enter valid email address"
+         }
+      },
 ]).then(function(response){
-    const data =  `${response.mail}`
+    const data =  `${response.manageremail} `
+    fs.writeFile("index.html", data, function(error){
+                //True             //False (else)
+        error ? console.error(error) : console.log('success')
+    })
 })
