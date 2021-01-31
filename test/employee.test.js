@@ -12,12 +12,9 @@ it("  when you pass a id in the constructor it should return a id ",()=>{
     expect(newEmployee.id).toBe(testValue)
 })
 it("when you call the GetName Function it should return name ",()=>{
-
+ 
     newEmployee = new Employee  ("carlos", 123, 'carlos@gmail.com')
     expect(newEmployee.getName()).toBe("carlos")
 })
-it('when Function GetEmail is called return email',()=>{
-    const newEmployee = new Employee ('carlos',123,'carlos@gmail.com')
-    expect(newEmployee.getEmail()).toBe("carlos@gmail.com")
-})
+
 })
